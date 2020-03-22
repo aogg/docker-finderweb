@@ -14,8 +14,14 @@ docker run -d --name finderweb -p 8080:8080 adockero/finderweb
 然后访问http://localhost:8080
 
 ## 保留配置文件
-docker run -d --name finderweb -v $(pwd)/conf:/usr/local/tomcat/conf adockero/finderweb
+```bash
+docker run -d --name finderweb -v $(pwd)/data:/data adockero/finderweb
+```
 
+## 构建
+```bash
+docker build -t adockero/finderweb:2.5.4 .
+```
 
 # 介绍
 
