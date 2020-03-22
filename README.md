@@ -5,7 +5,19 @@ hub.docker.com
 https://hub.docker.com/r/adockero/finderweb
 
 
-# 说明
+# 使用
+
+## 体验使用
+```bash
+docker run -d --name finderweb -p 8080:8080 adockero/finderweb
+```
+然后访问http://localhost:8080
+
+## 保留配置文件
+docker run -d --name finderweb -v $(pwd)/conf:/usr/local/tomcat/conf adockero/finderweb
+
+
+# 介绍
 
 ## finderweb和ELK的区别
 这二者没有任何可比性，finderweb是个web文件管理器，就好象windows的资源管理器，只不过它是web的。finderweb的tail，less，grep功能可以理解为windows中的一种文件打开方式，仅此而已。
