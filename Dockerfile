@@ -27,4 +27,4 @@ RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && 
 
 VOLUME [ "/data/" ]
 
-CMD [ "/docker-start.sh", "&&", "catalina.sh", "run"]
+CMD [ "/docker-start.sh", "catalina.sh", "run"]
