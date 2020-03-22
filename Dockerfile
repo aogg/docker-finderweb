@@ -2,9 +2,12 @@ FROM tomcat:jre8-slim
 
 ARG FINDERWEB_VERSION='2.5.4'
 
+COPY docker-start.sh /
+
 # 1. 创建用户: tomcat
 # 如果已有可忽略
 RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && \
+    chmod +x /docker-start.sh && \
     # 1. 创建用户: tomcat
     # 如果已有可忽略
     useradd tomcat && \
@@ -22,3 +25,6 @@ RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && 
     # 6. 启动Tomcat
     # sudo -u tomcat $CATALINA_HOME/bin/startup.sh
 
+VOLUME [ "/data/" ]
+
+CMD [ "/docker-start.sh", "&&", "catalina.sh", "run"]
