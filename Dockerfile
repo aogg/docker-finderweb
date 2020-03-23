@@ -21,10 +21,15 @@ RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && 
     # 5. 为应用目录赋权限
     chown -R tomcat:tomcat $CATALINA_HOME && \
     chmod -R 755 $CATALINA_HOME
+    # 处理首次共享目录
+RUN (sleep 10 && catalina.sh stop)& echo '延迟关闭' && \
+    catalina.sh run && \
+    mkdir -p /data/ && \
+    cp -r $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/META-INF/conf/ /data/
 
     # 6. 启动Tomcat
     # sudo -u tomcat $CATALINA_HOME/bin/startup.sh
 
-VOLUME [ "/data/" ]
+VOLUME [ "${CATALINA_HOME}/webapps/ROOT/WEB-INF/classes/META-INF/conf/" ]
 
 CMD [ "/docker-start.sh", "catalina.sh", "run"]
