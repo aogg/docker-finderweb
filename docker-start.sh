@@ -7,9 +7,10 @@ app_conf="/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/META-INF/conf/"
 if ! test -d $volume_conf; then
     mkdir -p $volume_conf
     cp -r $app_conf $volume_root
+    
+    rm -Rf $app_conf/*
+    ln -s $volume_conf $app_conf
 fi
 
-rm -Rf $app_conf/*
-ln -s $volume_conf $app_conf
 
 exec "$@"
