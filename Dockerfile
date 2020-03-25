@@ -2,12 +2,12 @@ FROM tomcat:jre8-slim
 
 ARG FINDERWEB_VERSION='2.5.4'
 
-COPY docker-start.sh /
+COPY /script/*.sh /docker-script/
 
 # 1. 创建用户: tomcat
 # 如果已有可忽略
-RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && \
-    chmod +x /docker-start.sh && \
+RUN chmod +x /docker-script/* && \
+    apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && \
     # 1. 创建用户: tomcat
     # 如果已有可忽略
     useradd tomcat && \
@@ -20,16 +20,13 @@ RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* && 
     rm -f /tmp/finder-web-${FINDERWEB_VERSION}.zip && \
     # 5. 为应用目录赋权限
     chown -R tomcat:tomcat $CATALINA_HOME && \
-    chmod -R 755 $CATALINA_HOME
+    chmod -R 755 $CATALINA_HOME && \
     # 处理首次共享目录
-RUN (sleep 10 && catalina.sh stop)& echo '延迟关闭' && \
-    catalina.sh run && \
-    mkdir -p /data/ && \
-    cp -r $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/META-INF/conf/ /data/
+    /docker-script/build_back_config.sh
 
     # 6. 启动Tomcat
     # sudo -u tomcat $CATALINA_HOME/bin/startup.sh
 
 VOLUME [ "${CATALINA_HOME}/webapps/ROOT/WEB-INF/classes/META-INF/conf/" ]
 
-CMD [ "/docker-start.sh", "catalina.sh", "run"]
+CMD [ "/docker-script/docker-start.sh", "catalina.sh", "run"]
