@@ -15,12 +15,12 @@ docker run -d --name finderweb -p 8080:8080 adockero/finderweb
 
 ## 保留配置文件
 ```bash
-docker run -d --name finderweb -v $(pwd)/data:/data adockero/finderweb
+docker run -d --name finderweb -v $(pwd)/conf/:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/META-INF/conf/ adockero/finderweb
 ```
 
 ## 构建
 ```bash
-docker build -t adockero/finderweb:2.5.4 .
+docker build -t adockero/finderweb .
 ```
 
 # 介绍
