@@ -34,5 +34,3 @@ docker build -t adockero/finderweb .
 ## 想一次分配多个目录到一个空间中
 > 可以通过软链接***ln -s*** ，其中要注意要cd到最终ln目录，然后通过相对路径的方式。其中软链接后首次在左边导航看不到，只要点开软链接目录内部即可在下次刷新中看到。
 
-docker build -t adockero/finderweb .的
-docker build -t adockero/finderweb .
