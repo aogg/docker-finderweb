@@ -6,6 +6,8 @@ hub.docker.com
 https://hub.docker.com/r/adockero/finderweb
 
 
+[![finderweb](http://dockeri.co/image/adockero/finderweb)](https://hub.docker.com/r/adockero/finderweb)
+
 # 使用
 
 ## 体验使用
