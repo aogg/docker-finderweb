@@ -1,4 +1,5 @@
 # docker-finderweb
+多项目日志web查看系统，并有tail，less等功能  
 http://www.finderweb.net/    docker版
 
 hub.docker.com
@@ -16,6 +17,12 @@ docker run -d --name finderweb -p 8080:8080 adockero/finderweb
 ## 保留配置文件
 ```bash
 docker run -d --name finderweb -v $(pwd)/conf/:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/META-INF/conf/ adockero/finderweb
+```
+
+## 保留配置文件 + 代码共享
+多个项目看通过软链接集中在一个文件空间中，方便只分配一次权限就能看到所有项目日志
+```bash
+docker run -d --name finderweb -v /data/www/:/www/ -v $(pwd)/conf/:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/META-INF/conf/ adockero/finderweb
 ```
 
 ## 构建
