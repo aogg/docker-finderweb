@@ -1,0 +1,46 @@
+name: finderweb-构建和提交docker
+
+on:
+  push:
+    branches: [master]
+    paths: 
+      - "!**.md"
+  schedule: 
+    - cron: '0 2 2 * *' # Weekly on Sundays at 02:00 
+
+jobs:
+  
+  setup-build-publish:
+    runs-on: ubuntu-latest
+    name: 构建和推送docker镜像
+    steps:
+    
+    - name: Checkout
+      # 使用action库  actions/checkout获取源码
+      uses: actions/checkout@v2.3.2
+
+
+
+              
+    - name: whistle-latest
+      uses: docker/build-push-action@v1.1.0
+      with:
+        # Username used to log in to a Docker registry. If not set then no login will occur
+        username: adockero
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        password: ${{ secrets.PASSWORD }}
+        # Docker repository to tag the image with
+        repository: adockero/finderweb
+        # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+        tags: latest,2.5.8
+        # Path to the Dockerfile (Default is '{path}/Dockerfile')
+        path: ./
+        dockerfile: Dockerfile
+        # Always attempt to pull a newer version of the image
+        always_pull: true
+        # 构建参数
+        build_args: FINDERWEB_VERSION=2.5.8
+        # Adds labels with git repository information to the built image
+        add_git_labels: true  
+
+
