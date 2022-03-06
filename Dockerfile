@@ -22,8 +22,8 @@ RUN chmod +x /docker-script/* && \
     chown -R tomcat:tomcat $CATALINA_HOME && \
     chmod -R 755 $CATALINA_HOME && \
     # 处理首次共享目录
-    mkdir -p /data/ && \
-    cp -r $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/META-INF/conf/ /data/
+    mkdir -p /tmp-finderweb-data/ && \
+    cp -r $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/META-INF/conf/ /tmp-finderweb-data/
 
     # 6. 启动Tomcat
     # sudo -u tomcat $CATALINA_HOME/bin/startup.sh
