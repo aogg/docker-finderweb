@@ -16,6 +16,18 @@ docker run -d --name finderweb -p 8080:8080 adockero/finderweb
 ```
 然后访问http://localhost:8080
 
+
+
+# 2.5.8版本使用
+## 保留配置文件
+```bash
+docker run -d --restart=always --name finderweb \
+  -v $(pwd)/conf/:/usr/local/tomcat/webapps/ROOT/WEB-INF/finderweb/ \
+  adockero/finderweb
+```
+
+
+# 2.5.5版本使用
 ## 保留配置文件
 ```bash
 docker run -d --restart=always --name finderweb \
@@ -32,7 +44,7 @@ docker run -d --restart=always --name finderweb \
   adockero/finderweb
 ```
 
-## 构建
+# 构建
 ```bash
 docker build -t adockero/finderweb .
 ```
