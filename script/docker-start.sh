@@ -1,7 +1,7 @@
 #!/bin/bash
 
 volume_root="/tmp-finderweb-data"
-volume_conf="${volume_root}/conf"
+volume_conf="${volume_root}/finderweb"
 
 # 2.5.5
 # app_conf="/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/META-INF"
