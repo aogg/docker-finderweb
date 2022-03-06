@@ -20,7 +20,7 @@ jobs:
 
 
 
-    - name: whistle-latest
+    - name: finderweb-latest
       uses: docker/build-push-action@v1.1.0
       with:
         # Username used to log in to a Docker registry. If not set then no login will occur
